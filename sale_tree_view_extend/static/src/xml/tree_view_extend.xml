@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+   <t t-name="list_tree_pin_record.AllHeadListRender" owl="1"
+      t-inherit="web.ListRenderer" t-inherit-mode="extension">
+ <xpath expr="//div/table/thead/tr/th[@t-if='hasSelectors']" position="before">
+      <t t-if="props.list.resModel === 'sale.order'">
+        <th></th>
+      </t>
+    </xpath>       <!--           <xpath expr="//div/table/tfoot/tr/td[@t-if='hasSelectors']" position="before">-->
+       <!--                              <i class="fa fa-thumb-tack" style="color: rgb(60, 179, 113);"-->
+       <!--                                 t-on-click="(ev) => this.pin_record(ev,record)"/>-->
+       <!--       </xpath>-->
+
+       </t>
+    <t t-name="list_tree_pin_record.RowListView"
+       t-inherit="web.ListRenderer.RecordRow"
+       t-inherit-mode="extension" owl="1">
+    <xpath expr="//tr/td[hasclass('o_list_record_selector')]" position="before">
+        <t t-if="record.resModel === 'sale.order' and hasSelectors">
+            <td>
+                <i class="fa fa-caret-right"
+                   t-att-data-id="record.resId"
+                   t-on-click="(ev) => this.pin_record(ev,record)"/>
+            </td>
+        </t>
+    </xpath>
+</t>
+</templates>
